@@ -7,26 +7,26 @@ function addItem() {
                             <td></td>
                             <td></td>
                             <td>भाड़ा</td>
-                            <td><input type="text" id="fare" class="form-control" /></td>
+                            <td><input type="number" id="fare" class="form-control" /></td>
                             <td></td>
                         </tr>
                         <tr class="table table-success">
                             <th></th>
                             <th></th>
                             <th>कुल वज़न</th>
-                            <th><input type="text" id="netWeight" class="form-control" disabled/></th>
-                            <th>कुल राशि</th><th><input type="text" id="netAmount" class="form-control netAmount" disabled/></th>
+                            <th><input type="number" id="netWeight" class="form-control" disabled/></th>
+                            <th>कुल राशि</th><th><input type="number" id="netAmount" class="form-control netAmount" disabled/></th>
                             <th></th>
                         </tr>`;
 
   var cell1 = `<tr class=${"insertafter"+counter}>
-                 <td><div class="autocomplete" style="width:300px;"><input id="myInput" type="text" name="myCountry" placeholder="आइटम"></div></td>
+                 <td><div class="autocomplete" style="width:300px;"><input id="myInput" id=${"item"+counter} type="text" data-name=${"dtname"+counter} name="myCountry" placeholder="आइटम"></div></td>
                  <td> <input type="text" id=${"size"+counter} class="size" data-name=${"dtname"+counter} class="form-control round"/></td>
-                 <td> <input type="text" id=${"quantity"+counter} class="quantity" data-name=${"dtname"+counter} class="form-control round"/></td>
-                 <td> <input type="text" type="number" id=${"weight"+counter}  class="weight" data-name=${"dtname"+counter} class="form-control round"/></td>
-                 <td> <input type="text" type="number" id=${"rate"+counter} class="rate" data-name=${"dtname"+counter} class="form-control round"/></td>
-                 <td class="totalcol"> <input type="text" id=${"total"+counter}  class="total" data-name=${"dtname"+counter} class="form-control round" disabled/></td>
-                 <td class="print"><button type=\"button\"  class=\"btn btn-danger delItemrow\" data-name=${counter}>Delete Item</button></td> 
+                 <td> <input type="number" id=${"quantity"+counter} class="quantity" data-name=${"dtname"+counter} class="form-control round"/></td>
+                 <td> <input type="number" type="number" id=${"weight"+counter}  class="weight" data-name=${"dtname"+counter} class="form-control round"/></td>
+                 <td> <input type="number" type="number" id=${"rate"+counter} class="rate" data-name=${"dtname"+counter} class="form-control round"/></td>
+                 <td class="totalcol"> <input type="number" id=${"total"+counter}  class="total" data-name=${"dtname"+counter} class="form-control round" disabled/></td>
+                 <td class="print"><button type=\"button\"  class=\"btn btn-danger delItemrow\" data-name=${counter}>Delete</button></td> 
                </tr>`;
 
   $(".lastItem,.table-success").remove();
@@ -173,9 +173,15 @@ $(document).ready(function () {
   });
 
     /// in rate  opertaion
-  $(document.body).on('blur', "#myTable td input.rate", function (e) {
+  $(document.body).on('blur', "#myTable td input.rate, #myTable td input.quantity", function (e) {
     var txt = $(this).attr('data-name');
     var ratenumber = txt.match(/\d/g)[0];
+
+    alert($(`${"#myTable td input#item"+ratenumber}`).val());
+
+    if(true){
+
+    }
     weight = $(`${"#myTable td input#weight"+ratenumber}`).val();
 
     if (weight != 'NaN' && weight.trim() != '') {
