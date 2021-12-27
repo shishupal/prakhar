@@ -94,8 +94,8 @@ $(document).ready(function () {
     $(this).parents('tr').remove();
     var grandTotalAmt1 = grandTotalAmt(grandTotal) + Number($('#fare').val())
     $("#netAmount").val(grandTotalAmt1.toFixed(2));
-    var totalwight=  grandTotalwight(totalweightitem);
-    $("#netWeight").val(totalwight.toFixed(2));
+    var totalweight=  grandTotalwight(totalweightitem);
+    $("#netWeight").val(totalweight.toFixed(2));
     e.preventDefault();
   });
 
