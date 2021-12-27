@@ -149,14 +149,39 @@ $(document).ready(function () {
   var total = 0;
   var grandTotal = [];
   var totalweightitem=[];
-  
+
+  // delte Row
+  $(document.body).on('click', ".delItemrow", function (e) {
+
+    console.log("hello del");
+    grandTotal[$(this).attr('data-name')] = 0
+    totalweightitem[$(this).attr('data-name')]= 0;
+    $(this).parents('tr').remove();
+    var grandTotalAmt1 = grandTotalAmt(grandTotal) + Number($('#fare').val())
+    $("#netAmount").val(grandTotalAmt1.toFixed(2));
+    var totalwight=  grandTotalwight(totalweightitem);
+    $("#netWeight").val(totalwight.toFixed(2));
+    e.preventDefault();
+  });
+
+ // delte Row
+ $(document.body).on('blur', "#fare, table td", function (e) {
+
+    var grandTotalAmt1 = grandTotalAmt(grandTotal);
+    var fareamount = grandTotalAmt1+ Number($('#fare').val());
+    $("#netAmount").val(fareamount.toFixed(2));
+    var totalwight=  grandTotalwight(totalweightitem);
+    $("#netWeight").val(totalwight.toFixed(2));
+    e.preventDefault();
+
+  });
 
   var fare = 0;
   $(document.body).on('blur', "#myTable td input.weight", function (e) {
     var txt = $(this).attr('data-name');
     var weightnumber = txt.match(/\d/g)[0];
     rate = $(`${"#myTable td input#rate"+weightnumber}`).val();
-    totalweightitem[weightnumber]= Number($(this).val());    
+    totalweightitem[weightnumber]= Number($(this).val());
     if (rate != 'NaN' && rate.trim() != '') {
       total = parseFloat($(this).val()).toFixed(2) * parseFloat(rate).toFixed(2);
       $(`${"#myTable td input#total"+weightnumber}`).val(total.toFixed(2));
@@ -173,18 +198,21 @@ $(document).ready(function () {
 
   });
 
-    /// in rate  opertaion
-  $(document.body).on('blur', "#myTable td input.rate, #myTable td input.quantity", function (e) {
+  /// in rate  operation
+  $(document.body).on('blur', "#myTable td input.rate", function (e) {
     var txt = $(this).attr('data-name');
     var ratenumber = txt.match(/\d/g)[0];
 
-    //alert($(`${"#myTable td input#item"+ratenumber}`).val());
+    /*let item = $(`${"#myTable td input#item"+ratenumber}`).val();
+    let result = item.match("^RHL");
 
-    if(true){
+    if(null!=result){
+      weight = $(`${"#myTable td input#quantity"+ratenumber}`).val();
+    }else {
+      weight = $(`${"#myTable td input#weight"+ratenumber}`).val();
+    }*/
 
-    }
     weight = $(`${"#myTable td input#weight"+ratenumber}`).val();
-
     if (weight != 'NaN' && weight.trim() != '') {
       total = parseFloat($(this).val()).toFixed(2) * parseFloat(weight).toFixed(2);
       $(`${"#myTable td input#total"+ratenumber}`).val(total.toFixed(2));
@@ -198,50 +226,6 @@ $(document).ready(function () {
 
     e.preventDefault();
   });
-
-  // Grand total click
-  $(document.body).on('click', ".grandTotalAmt", function (e) {
-    var grandTotalAmt1 = grandTotalAmt(grandTotal) + Number($('#fare').val())
-    $("#netAmount").val(grandTotalAmt1.toFixed(2));
-
-    var totalwight=  grandTotalwight(totalweightitem);
-    $("#netWeight").val(totalwight.toFixed(2));
-    e.preventDefault();
-  });
-
-
-  // delte Row
-  $(document.body).on('click', ".delItemrow", function (e) {
-
-    console.log("hello del");
-    grandTotal[$(this).attr('data-name')] = 0
-
-    totalweightitem[$(this).attr('data-name')]= 0;
-
-    $(this).parents('tr').remove();
-    var grandTotalAmt1 = grandTotalAmt(grandTotal) + Number($('#fare').val())
-    $("#netAmount").val(grandTotalAmt1.toFixed(2));
-
-    var totalwight=  grandTotalwight(totalweightitem);
-    $("#netWeight").val(totalwight.toFixed(2));
-
-    e.preventDefault();
-  });
-
- // delte Row
- $(document.body).on('blur', "#fare, table td", function (e) {
-
-  var grandTotalAmt1 = grandTotalAmt(grandTotal);
-  
-  var fareamount = grandTotalAmt1+ Number($('#fare').val());
-
-  $("#netAmount").val(fareamount.toFixed(2));
-
-  var totalwight=  grandTotalwight(totalweightitem);
-  $("#netWeight").val(totalwight.toFixed(2));
-
-  e.preventDefault();
-});
 
 
 });
