@@ -20,7 +20,7 @@ function addItem() {
                         </tr>`;
 
   var cell1 = `<tr class=${"insertafter"+counter}>
-                 <td><div class="autocomplete" style="width:300px;"><input id="myInput" id=${"item"+counter} type="text" data-name=${"dtname"+counter} name="myCountry" placeholder="आइटम"></div></td>
+                 <td><div class="autocomplete" style="width:300px;"><input  id=${"item"+counter} type="text" data-name=${"dtname"+counter} name="myCountry" placeholder="आइटम"></div></td>
                  <td> <input type="text" id=${"size"+counter} class="size" data-name=${"dtname"+counter} class="form-control round"/></td>
                  <td> <input type="number" id=${"quantity"+counter} class="quantity" data-name=${"dtname"+counter} class="form-control round"/></td>
                  <td> <input type="number" type="number" id=${"weight"+counter}  class="weight" data-name=${"dtname"+counter} class="form-control round"/></td>
@@ -99,7 +99,7 @@ function addItem() {
     "H/W 202",
     "H/W 304"
   ];
-  autocomplete(document.getElementById("myInput"), varity);
+  autocomplete(document.getElementById(`${"item"+counter}`), varity);
 }
 
 function grandTotalAmt(grandTotal) {
@@ -177,7 +177,7 @@ $(document).ready(function () {
     var txt = $(this).attr('data-name');
     var ratenumber = txt.match(/\d/g)[0];
 
-    alert($(`${"#myTable td input#item"+ratenumber}`).val());
+    //alert($(`${"#myTable td input#item"+ratenumber}`).val());
 
     if(true){
 
