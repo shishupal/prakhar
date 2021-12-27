@@ -21,10 +21,10 @@ function addItem() {
 
   var cell1 = `<tr class=${"insertafter"+counter}>
                  <td><div class="autocomplete" style="width:300px;"><input id="myInput" type="text" name="myCountry" placeholder="आइटम"></div></td>
-                 <td> <input type="text" id=${"size"+counter} class="form-control"/></td>
+                 <td> <input type="text" id=${"size"+counter} class="size" data-name=${"dtname"+counter} class="form-control round"/></td>
                  <td> <input type="text" id=${"quantity"+counter} class="quantity" data-name=${"dtname"+counter} class="form-control round"/></td>
-                 <td> <input type="text" id=${"weight"+counter}  class="weight" data-name=${"dtname"+counter} class="form-control round"/></td>
-                 <td> <input type="text" id=${"rate"+counter} class="rate" data-name=${"dtname"+counter} class="form-control round"/></td>
+                 <td> <input type="text" type="number" id=${"weight"+counter}  class="weight" data-name=${"dtname"+counter} class="form-control round"/></td>
+                 <td> <input type="text" type="number" id=${"rate"+counter} class="rate" data-name=${"dtname"+counter} class="form-control round"/></td>
                  <td class="totalcol"> <input type="text" id=${"total"+counter}  class="total" data-name=${"dtname"+counter} class="form-control round" disabled/></td>
                  <td class="print"><button type=\"button\"  class=\"btn btn-danger delItemrow\" data-name=${counter}>Delete Item</button></td> 
                </tr>`;
@@ -36,7 +36,7 @@ function addItem() {
     $(".additem").removeAttr('disabled');
   }
 
-  var countries = ["Angle",
+  var varity = ["Angle",
     "Angle 1x1",
     "Angle 11/4x1",
     "Angle 35x5",
@@ -99,7 +99,7 @@ function addItem() {
     "H/W 202",
     "H/W 304"
   ];
-  autocomplete(document.getElementById("myInput"), countries);
+  autocomplete(document.getElementById("myInput"), varity);
 }
 
 function grandTotalAmt(grandTotal) {
