@@ -43,7 +43,6 @@ function grandTotalAmt(grandTotal) {
   var totalwithoutfilter = grandTotal;
   var grandTotalAmt = totalwithoutfilter.filter(col => col);
   grandTotalAmt = grandTotalAmt.reduce((a, b) => Number(a) + Number(b), 0);
-  console.log(grandTotalAmt);
   return grandTotalAmt;
 }
 
@@ -52,7 +51,6 @@ function grandTotalwight(totalweightitem) {
   var totalwithoutfilter = totalweightitem;
   var totalweightitem1 = totalwithoutfilter.filter(col => col);
   totalweightitem1 = totalweightitem1.reduce((a, b) => Number(a) + Number(b), 0);
-  console.log(totalweightitem1,"totalweightitem1");
   return totalweightitem1;
 }
 
@@ -64,14 +62,11 @@ function printfn() {
 }
 
 function netEstimate() {
-  console.log("Clicked ")
   $("table").change(function () {
     var theTotal = 0;
     $("td:nth-child(4)").each(function () {
       var val = $(this).text();
-      console.log(val)
       theTotal += parseInt(val);
-      console.log(theTotal)
     });
   });
 }
@@ -87,8 +82,6 @@ $(document).ready(function () {
 
   // delte Row
   $(document.body).on('click', ".delItemrow", function (e) {
-
-    console.log("hello del");
     grandTotal[$(this).attr('data-name')] = 0
     totalweightitem[$(this).attr('data-name')]= 0;
     $(this).parents('tr').remove();
@@ -96,6 +89,11 @@ $(document).ready(function () {
     $("#netAmount").val(grandTotalAmt1.toFixed(2));
     var totalweight=  grandTotalwight(totalweightitem);
     $("#netWeight").val(totalweight.toFixed(2));
+
+    if($(".delItemrow").length ===0) {
+      $(".additem").removeAttr('disabled');
+    }
+    
     e.preventDefault();
   });
 
@@ -108,7 +106,6 @@ $(document).ready(function () {
     var totalwight=  grandTotalwight(totalweightitem);
     $("#netWeight").val(totalwight.toFixed(2));
     e.preventDefault();
-
   });
 
   var fare = 0;
@@ -121,7 +118,6 @@ $(document).ready(function () {
       total = parseFloat($(this).val()).toFixed(2) * parseFloat(rate).toFixed(2);
       $(`${"#myTable td input#total"+weightnumber}`).val(total.toFixed(2));
       grandTotal[weightnumber] = total.toFixed(2);
-      console.log(grandTotal)
     }
 
 
@@ -137,22 +133,19 @@ $(document).ready(function () {
   $(document.body).on('blur', "#myTable td input.rate", function (e) {
     var txt = $(this).attr('data-name');
     var ratenumber = txt.match(/\d/g)[0];
-
-    /*let item = $(`${"#myTable td input#item"+ratenumber}`).val();
-    let result = item.match("^RHL");
-
-    if(null!=result){
-      weight = $(`${"#myTable td input#quantity"+ratenumber}`).val();
-    }else {
-      weight = $(`${"#myTable td input#weight"+ratenumber}`).val();
-    }*/
-
     weight = $(`${"#myTable td input#weight"+ratenumber}`).val();
+    var quantity= $(`${"#myTable td input#quantity"+ratenumber}`).val();
     if (weight != 'NaN' && weight.trim() != '') {
       total = parseFloat($(this).val()).toFixed(2) * parseFloat(weight).toFixed(2);
       $(`${"#myTable td input#total"+ratenumber}`).val(total.toFixed(2));
       grandTotal[ratenumber] = total.toFixed(2);
-      console.log(grandTotal);
+    }
+
+    if(quantity != 'NaN' && quantity.trim() != '' 
+    && $(`${"#myTable td input#weight"+ratenumber}`).is(':disabled') ){
+      total = parseFloat($(this).val()).toFixed(2) * parseFloat(quantity).toFixed(2);
+      $(`${"#myTable td input#total"+ratenumber}`).val(total.toFixed(2));
+      grandTotal[ratenumber] = total.toFixed(2);
     }
 
     if ($(`${"#myTable td input#total"+ratenumber}`).val() > 0) {
@@ -162,6 +155,43 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
+  $(document.body).on('blur', ".autocomplete input", function (e) {
+    var txt = $(this).attr('data-name');
+    var ratenumber = txt.match(/\d/g)[0];
+   var item = $(`${"#myTable td input#item"+ratenumber}`).val();
+  
+    $(`${"#myTable td input#weight"+ratenumber}`).removeAttr('disabled').css({'background': '#fff'});
+   
+    setTimeout(()=>{
+      if($(`${"#myTable td input#item"+ratenumber}`).val().includes('RHL')){
+        $(`${"#myTable td input#weight"+ratenumber}`).attr('disabled',true).css({'background': '#ccc'});
+      }
+    },100);
+    e.preventDefault();
+  });
+
+
+
+  $(document.body).on('blur', "#myTable td input.quantity", function (e) {
+    var txt = $(this).attr('data-name');
+    var quantity = txt.match(/\d/g)[0];
+    rate = $(`${"#myTable td input#rate"+quantity}`).val();
+   // totalweightitem[quantity]= Number($(this).val());
+    if (rate != 'NaN' && rate.trim() != '') {
+      total = parseFloat($(this).val()).toFixed(2) * parseFloat(rate).toFixed(2);
+      $(`${"#myTable td input#total"+quantity}`).val(total.toFixed(2));
+      grandTotal[quantity] = total.toFixed(2);
+    }
+
+
+    if ($(`${"#myTable td input#total"+quantity}`).val() > 0) {
+      $(".additem").removeAttr('disabled');
+    }
+
+    e.preventDefault();
+
+  });
+
 
 });
 
@@ -169,5 +199,4 @@ window.addEventListener('load', function () {
   addItem();
   console.log("All item loaded");
 });
-
 
