@@ -53,14 +53,12 @@ body {
   position: relative;
   display: inline-block;
 }
+
 input {
   border: 1px solid #CCC;
   background-color: #fff;
   padding: 10px;
   font-size: 16px;
-}
-input[type=text] {
-  width: 100%;
 }
 input[type=submit] {
   background-color: DodgerBlue;
@@ -104,5 +102,25 @@ input[type=submit] {
 
 .tablerow{
     margin: 1% !important;
+    width:100%;
 }
 
+.netamountth input {
+    width: 148px;
+}
+
+
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+   body{
+       width :750px !important;
+   }
+    .navbar{
+        width: 125%;
+    }
+
+    .quantity,.weight,.rate,.total,.size{
+        width: 100px;
+    }
+}

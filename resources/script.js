@@ -15,18 +15,18 @@ function addItem() {
                             <th></th>
                             <th>कुल वज़न</th>
                             <th><input type="number" id="netWeight" class="form-control" disabled/></th>
-                            <th>कुल राशि</th><th><input type="number" id="netAmount" class="form-control netAmount" disabled/></th>
+                            <th>कुल राशि</th><th class="netamountth"><input type="number" id="netAmount" class="form-control netAmount" disabled/></th>
                             <th></th>
                         </tr>`;
 
   var cell1 = `<tr class=${"insertafter"+counter}>
-                 <td><div class="autocomplete" style="width:300px;"><input  id=${"item"+counter} type="text" data-name=${"dtname"+counter} name="myCountry" placeholder="आइटम"></div></td>
-                 <td> <input type="text" id=${"size"+counter} class="size" data-name=${"dtname"+counter} class="form-control round"/></td>
-                 <td> <input type="number" pattern="\\d*" id=${"quantity"+counter} class="quantity" data-name=${"dtname"+counter} class="form-control round"/></td>
-                 <td> <input type="number" pattern="\\d*" type="number" id=${"weight"+counter}  class="weight" data-name=${"dtname"+counter} class="form-control round"/></td>
+                 <td><div class="autocomplete" > <input  id=${"item"+counter} type="text" data-name=${"dtname"+counter} name="myCountry" placeholder="आइटम"></div></td>
+                 <td><input type="text" id=${"size"+counter} class="size" data-name=${"dtname"+counter} class="form-control round"/></td>
+                 <td><input type="number" pattern="\\d*" id=${"quantity"+counter} class="quantity" data-name=${"dtname"+counter} class="form-control round"/></td>
+                 <td><input type="number" pattern="\\d*" type="number" id=${"weight"+counter}  class="weight" data-name=${"dtname"+counter} class="form-control round"/></td>
                  <td> <input type="number" pattern="\\d*" type="number" id=${"rate"+counter} class="rate" data-name=${"dtname"+counter} class="form-control round"/></td>
-                 <td class="totalcol"> <input type="number" id=${"total"+counter}  class="total" data-name=${"dtname"+counter} class="form-control round" disabled/></td>
-                 <td class="print"><button type=\"button\"  class=\"btn btn-danger delItemrow\" data-name=${counter}>Delete</button></td> 
+                 <td class="totalcol"><input type="number" id=${"total"+counter}  class="total" data-name=${"dtname"+counter} class="form-control round" disabled/></td>
+                 <td class="print"><button type=\"button\"  class=\"btn btn-danger delItemrow\" data-name=${counter}>Delete</button></div><div></td> 
                </tr>`;
 
   $(".lastItem,.table-success").remove();
@@ -80,26 +80,20 @@ $(document).ready(function () {
   var grandTotal = [];
   var totalweightitem=[];
 
-  // delte Row
   $(document.body).on('click', ".delItemrow", function (e) {
-    grandTotal[$(this).attr('data-name')] = 0
+    grandTotal[$(this).attr('data-name')] = 0;
     totalweightitem[$(this).attr('data-name')]= 0;
     $(this).parents('tr').remove();
-    var grandTotalAmt1 = grandTotalAmt(grandTotal) + Number($('#fare').val())
+    var grandTotalAmt1 = grandTotalAmt(grandTotal) + Number($('#fare').val());
     $("#netAmount").val(grandTotalAmt1.toFixed(2));
     var totalweight=  grandTotalwight(totalweightitem);
     $("#netWeight").val(totalweight.toFixed(2));
-
-    if($(".delItemrow").length ===0) {
-      $(".additem").removeAttr('disabled');
-    }
+    $(".additem").removeAttr('disabled');
     
     e.preventDefault();
   });
 
- // delte Row
- $(document.body).on('blur', "#fare, table td", function (e) {
-
+ $(document.body).on('blur', "#fare", function (e) {
     var grandTotalAmt1 = grandTotalAmt(grandTotal);
     var fareamount = grandTotalAmt1+ Number($('#fare').val());
     $("#netAmount").val(fareamount.toFixed(2));
@@ -119,7 +113,6 @@ $(document).ready(function () {
       $(`${"#myTable td input#total"+weightnumber}`).val(total.toFixed(2));
       grandTotal[weightnumber] = total.toFixed(2);
     }
-
 
     if ($(`${"#myTable td input#total"+weightnumber}`).val() > 0) {
       $(".additem").removeAttr('disabled');
@@ -171,7 +164,6 @@ $(document).ready(function () {
   });
 
 
-
   $(document.body).on('blur', "#myTable td input.quantity", function (e) {
     var txt = $(this).attr('data-name');
     var quantity = txt.match(/\d/g)[0];
@@ -183,7 +175,6 @@ $(document).ready(function () {
       grandTotal[quantity] = total.toFixed(2);
     }
 
-
     if ($(`${"#myTable td input#total"+quantity}`).val() > 0) {
       $(".additem").removeAttr('disabled');
     }
@@ -191,7 +182,6 @@ $(document).ready(function () {
     e.preventDefault();
 
   });
-
 
 });
 

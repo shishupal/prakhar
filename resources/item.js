@@ -1,4 +1,5 @@
-var varity = ["Angle",
+var varity = [
+    "Angle",
     "Angle 1x1",
     "Angle 11/4x1",
     "Angle 35x5",
