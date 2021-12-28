@@ -163,7 +163,7 @@ $(document).ready(function () {
     $(`${"#myTable td input#weight"+ratenumber}`).removeAttr('disabled').css({'background': '#fff'});
    
     setTimeout(()=>{
-      if($(`${"#myTable td input#item"+ratenumber}`).val().includes('RHL')){
+      if($(`${"#myTable td input#item"+ratenumber}`).val().startsWith("RHL")){
         $(`${"#myTable td input#weight"+ratenumber}`).attr('disabled',true).css({'background': '#ccc'});
       }
     },100);
