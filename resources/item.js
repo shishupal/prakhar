@@ -10,8 +10,8 @@ var varity = [
     "Angle 65x5",
     "Angle 65x6",
     "Patti",
-    "Patti 3/4 x 11/4",
-    "Patti 3/4 x 11/2",
+    "Patti 3/4x11/4",
+    "Patti 3/4x11/2",
     "Patri 1x1",
     "Patri 1x2",
     "Saria",
@@ -20,6 +20,8 @@ var varity = [
     "Pipe लोकल",
     "Pipe Apolo",
     "Ring",
+    "RHL Ring 7x3",
+    "RHL Ring 7x7",
     "Square",
     "Square 2 सूत",
     "Square 21/2सूत",
@@ -62,4 +64,4 @@ var varity = [
     "Jaali",
     "H/W 202",
     "H/W 304"
-  ];
+];
