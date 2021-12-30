@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8cb68629-e5ab-46a5-a0d4-22af1be0f308" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/script.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -18,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="232" selection-start-line="232" selection-end-line="232" />
+            <state relative-caret-position="372">
+              <caret line="236" selection-start-line="236" selection-end-line="236" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#!!top" expanded="true" />
@@ -77,8 +78,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="x" value="180" />
+    <option name="y" value="112" />
+    <option name="width" value="1080" />
+    <option name="height" value="676" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -154,12 +157,14 @@
       <workItem from="1640718831693" duration="393000" />
       <workItem from="1640855457866" duration="151000" />
       <workItem from="1640891410781" duration="155000" />
-      <workItem from="1640891884889" duration="1118000" />
+      <workItem from="1640891884889" duration="1170000" />
+      <workItem from="1640901266815" duration="545000" />
+      <workItem from="1640903140511" duration="456000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16856000" />
+    <option name="totallyTimeSpent" value="17909000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -247,8 +252,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="232" selection-start-line="232" selection-end-line="232" />
+        <state relative-caret-position="372">
+          <caret line="236" selection-start-line="236" selection-end-line="236" />
           <folding>
             <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#!!top" expanded="true" />
